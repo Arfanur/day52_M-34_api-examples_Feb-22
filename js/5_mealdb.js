@@ -1,8 +1,10 @@
+document.getElementById('error-message').style.display = 'none';
 const searchFood = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     // clear data
     searchField.value = '';
+    // document.getElementById('error-message').style.display = 'none';
     if (searchText == '') {
         searchField.placeholder = 'Please Write Something to Display';
         hideNoResultFoundH1();
@@ -11,10 +13,16 @@ const searchFood = () => {
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
         // load data
         fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.meals));
+            .then(res => res.json())
+            .then(data => displaySearchResult(data.meals))
+            .catch(error => displayError(error));
         searchField.placeholder = 'Search the food you want';
     };
+};
+
+// catch Error
+const displayError = error => {
+    document.getElementById('error-message').style.display = 'block';
 };
 
 // show H1 ... No Result Found
