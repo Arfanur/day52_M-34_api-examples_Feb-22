@@ -20,6 +20,8 @@ const searchFood = async () => {
             document.getElementById('error-message').style.display = 'block';
         }
         searchField.placeholder = 'Search the food you want';
+        const mealDetail = document.getElementById('meal-details');
+        mealDetail.textContent = '';
         // fetch(url)
         //     .then(res => res.json())
         //     .then(data => displaySearchResult(data.meals));
